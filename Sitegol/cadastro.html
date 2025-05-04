@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastre-se - The Last Wall</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: url('https://s2-ge.glbimg.com/ucQEeyVw1h8O6vK0UOvOWti8v3U=/0x0:1500x948/1008x0/smart/filters:strip_icc()/s.glbimg.com/es/ge/f/original/2013/10/24/rogerioceni_defesasaopaulo_ae_47.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      color: #fff;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 14px;
+      padding: 20px 40px;
+      width: 640px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      border: 1px solid #b50000aa;
+      animation: fadeIn 0.7s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #ff2e2e;
+      text-shadow: 0 0 8px #ff2e2eaa;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-group label {
+      margin-bottom: 4px;
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 8px 10px;
+      background: #2b2b2b;
+      border: 1px solid #444;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #ff2e2e;
+      box-shadow: 0 0 8px #ff2e2e88;
+      background-color: #1e1e1e;
+    }
+
+    input:invalid {
+      border-color: #ff5555;
+      animation: shake 0.2s ease-in-out 0s 2;
+    }
+
+    input:valid {
+      border-color: #00ff88;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+
+    .input-group i {
+      margin-right: 6px;
+      color: #ff2e2e;
+    }
+
+    .btn {
+      margin-top: 16px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #ff2e2e, #ffffff);
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #000;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px #ff2e2e88;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastre-se no The Last Wall</h2>
+    <form>
+      <div class="input-group">
+        <label for="nome"><i class="fa fa-user"></i> Nome completo</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex: Rogério Ceni" required />
+      </div>
+      <div class="input-group">
+        <label for="apelido"><i class="fa fa-id-badge"></i> Apelido</label>
+        <input type="text" id="apelido" name="apelido" placeholder="Ex: M1T0" required />
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="dtnasc"><i class="fa fa-calendar"></i> Nascimento</label>
+          <input type="date" id="dtnasc" name="dtnasc" required />
+        </div>
+        <div class="input-group">
+          <label for="tel"><i class="fa fa-phone"></i> Telefone</label>
+          <input type="tel" id="tel" name="tel" placeholder="(11) 91234-5678" required />
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="email"><i class="fa fa-envelope"></i> E-mail</label>
+        <input type="email" id="email" name="email" placeholder="voce@email.com" required />
+      </div>
+      <div class="input-group">
+        <label for="senha"><i class="fa fa-lock"></i> Senha</label>
+        <input type="password" id="senha" name="senha" required />
+      </div>
+      <div class="input-group">
+        <label for="confirma_senha"><i class="fa fa-lock"></i> Confirmar Senha</label>
+        <input type="password" id="confirma_senha" name="confirma_senha" required />
+      </div>
+      <button class="btn" type="submit">Criar conta</button>
+    </form>
+  </div>
+</body>
+</html>

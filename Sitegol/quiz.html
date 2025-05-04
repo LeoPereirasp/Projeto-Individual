@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz de Goleiros</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    .option {
+      margin-bottom: 10px;
+      display: block;
+    }
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="question" class="question"></div>
+  <div id="options"></div>
+
+  <div class="buttons">
+    <button onclick="voltar()">Voltar</button>
+    <button onclick="avancar()">Avançar</button>
+  </div>
+
+  <div id="progress" class="progress"></div>
+</div>
+
+<script>
+  var perguntas = [
+    {
+      texto: "Você tem facilidade em sair do gol em bolas aéreas?",
+      opcoes: ["Sim", "Às vezes", "Não"]
+    },
+    {
+      texto: "Você se comunica com a defesa durante o jogo?",
+      opcoes: ["Sempre", "Às vezes", "Quase nunca"]
+    },
+    {
+      texto: "Como você avalia seu tempo de reação?",
+      opcoes: ["Muito rápido", "Normal", "Devagar"]
+    },
+    {
+      texto: "Você tem resistência para jogar os 90 minutos?",
+      opcoes: ["Sim", "Mais ou menos", "Não"]
+    },
+    {
+      texto: "Como você lida com um erro durante o jogo?",
+      opcoes: ["Me mantenho calmo", "Fico abalado", "Fico nervoso"]
+    },
+    {
+      texto: "Você sente pressão com torcida ou olhares externos?",
+      opcoes: ["Não", "Às vezes", "Sim"]
+    }
+  ];
+
+  var respostas = new Array(perguntas.length);
+  var indiceAtual = 0;
+
+  function mostrarPergunta() {
+    var pergunta = perguntas[indiceAtual];
+    var divPergunta = document.getElementById("question");
+    var divOpcoes = document.getElementById("options");
+    var divProgresso = document.getElementById("progress");
+
+    divPergunta.innerHTML = pergunta.texto;
+    divOpcoes.innerHTML = "";
+
+    for (var i = 0; i < pergunta.opcoes.length; i++) {
+      var opcao = pergunta.opcoes[i];
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "opcao";
+      input.value = opcao;
+      input.id = "opcao" + i;
+
+      // Se já respondeu antes
+      if (respostas[indiceAtual] == opcao) {
+        input.checked = true;
+      }
+
+      var label = document.createElement("label");
+      label.htmlFor = "opcao" + i;
+      label.className = "option";
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(" " + opcao));
+      divOpcoes.appendChild(label);
+    }
+
+    divProgresso.innerHTML = "Pergunta " + (indiceAtual + 1) + " de " + perguntas.length;
+  }
+
+  function avancar() {
+    var radios = document.getElementsByName("opcao");
+    var respostaSelecionada = null;
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) {
+        respostaSelecionada = radios[i].value;
+      }
+    }
+
+    if (respostaSelecionada != null) {
+      respostas[indiceAtual] = respostaSelecionada;
+
+      if (indiceAtual < perguntas.length - 1) {
+        indiceAtual++;
+        mostrarPergunta();
+      } else {
+        mostrarResultado();
+      }
+    } else {
+      alert("Por favor, selecione uma resposta antes de avançar.");
+    }
+  }
+
+  function voltar() {
+    if (indiceAtual > 0) {
+      indiceAtual--;
+      mostrarPergunta();
+    }
+  }
+
+  function mostrarResultado() {
+    var div = document.querySelector(".container");
+    div.innerHTML = "<h2>Obrigado por responder!</h2><ul>";
+
+    for (var i = 0; i < perguntas.length; i++) {
+      div.innerHTML += "<li><strong>" + perguntas[i].texto + "</strong><br>Resposta: " + respostas[i] + "</li><br>";
+    }
+
+    div.innerHTML += "</ul>";
+  }
+
+  // Inicia o quiz
+  mostrarPergunta();
+</script>
+
+</body>
+</html>
